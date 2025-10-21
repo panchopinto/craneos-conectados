@@ -1,0 +1,62 @@
+<!doctype html><html lang="es" class="lang-es" class="lang-es" class="lang-es" class="lang-es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/controls.css">
+  
+  <link rel="stylesheet" href="assets/css/accessibility.css">
+</head><body>
+<div class="container">
+  <a class="btn" href="#" onclick="history.back();return false;">⬅️ Volver</a>
+  <h1>📝 Quiz</h1>
+  <div id="box"></div>
+  <a class="btn" id="check">Comprobar</a>
+  <div id="res" class="small"></div>
+</div>
+<script>
+  // Ejemplo mínimo (puedes cambiar por JSON por modelo si quieres):
+  const sample={"items":[
+    {"q_es":"¿Qué estructura forma el pómulo?","options":["Sutura coronal","Arco cigomático","Cóndilo occipital"],"answer":1},
+    {"q_es":"La sutura coronal separa:","options":["Frontal y parietal","Temporal y occipital","Maxilar y nasal"],"answer":0}
+  ]};
+  const box=document.getElementById("box");
+  sample.items.forEach((it,idx)=>{
+    const div=document.createElement("div"); div.className="q";
+    const Q=document.createElement("div"); Q.textContent=it.q_es; div.appendChild(Q);
+    it.options.forEach((op,i)=>{
+      const lbl=document.createElement("label"); lbl.className="opt";
+      const inp=document.createElement("input"); inp.type="radio"; inp.name="q"+idx; inp.value=i;
+      lbl.appendChild(inp); lbl.appendChild(document.createTextNode(" "+op));
+      div.appendChild(lbl);
+    });
+    box.appendChild(div);
+  });
+  document.getElementById("check").onclick=()=>{
+    let ok=0; const tot=sample.items.length;
+    sample.items.forEach((it,idx)=>{
+      const sel=document.querySelector(`input[name=q${idx}]:checked`);
+      if(sel && +sel.value===it.answer) ok++;
+    });
+    const p=Math.round(100*ok/tot);
+    document.getElementById('res').innerHTML=`Resultado: <b>${ok}/${tot}</b> (${p}%)`;
+  };
+</script>
+<style>
+  .q{background:#0f1930;border:1px solid #22335b;border-radius:12px;padding:12px;margin:12px 0}
+  .opt{display:block;margin:6px 0}
+</style>
+<footer>
+  <div style="display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center">
+    <div>Creado por:</a></div>
+    <div>👨‍💻 Francisco Pinto — 📧 <a href="mailto:franciscoandresp@gmail.com">franciscoandresp@gmail.com</a> · 📞 <a href="tel:+56920027992">+56 9 2002 7992</a></div>
+    <div>👩‍🏫 Belén Acuña — 📧 <a href="mailto:belen.acpe@gmail.com">belen.acpe@gmail.com</a> · 📞 <a href="tel:+56962664960">+56 9 6266 4960</a></div>
+    <div>👩‍🏫 Macarena Álvarez — 📧 <a href="mailto:macarena.alvarez.franck@gmail.com">macarena.alvarez.franck@gmail.com</a> · 📞 <a href="tel:+56949290386">+56 9 4929 0386</a></div>
+    <div>Hecho con ❤️ para el Liceo Bicentenario de Excelencia Polivalente San Nicolás</div>
+    <div>Proyecto Educativo - Realidad Virtual / Realidad Aumentada / vista 3D</div>
+  </div>
+</footer>
+  <script src="assets/js/controls.js"></script>
+  
+  <script src="assets/js/accessibility.js"></script>
+</body></html>

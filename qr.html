@@ -1,0 +1,34 @@
+<!doctype html><html lang="es" class="lang-es" class="lang-es" class="lang-es" class="lang-es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script defer src="assets/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>.box{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:24px}</style>
+  <link rel="stylesheet" href="assets/css/controls.css">
+  
+  <link rel="stylesheet" href="assets/css/accessibility.css">
+</head><body>
+<div class="container"><a class="btn" href="./">⬅️ Inicio</a><h1>🔗 QR</h1>
+  <div class="box"><div id="qrcode"></div><input id="link" class="small" style="width:100%;padding:10px;border-radius:12px;border:1px solid #22335b;background:#0f1930;color:#e8eefc"><a id="open" class="btn">Abrir enlace</a></div>
+</div>
+<script>
+  const raw=new URLSearchParams(location.search).get("url")||"./";
+  const abs=new URL(raw,location.href).href; document.getElementById("link").value=abs; document.getElementById("open").href=abs;
+  new QRCode(document.getElementById("qrcode"),{text:abs,width:240,height:240});
+</script>
+<footer>
+  <div style="display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center">
+    <div>Creado por:</a></div>
+    <div>👨‍💻 Francisco Pinto — 📧 <a href="mailto:franciscoandresp@gmail.com">franciscoandresp@gmail.com</a> · 📞 <a href="tel:+56920027992">+56 9 2002 7992</a></div>
+    <div>👩‍🏫 Belén Acuña — 📧 <a href="mailto:belen.acpe@gmail.com">belen.acpe@gmail.com</a> · 📞 <a href="tel:+56962664960">+56 9 6266 4960</a></div>
+    <div>👩‍🏫 Macarena Álvarez — 📧 <a href="mailto:macarena.alvarez.franck@gmail.com">macarena.alvarez.franck@gmail.com</a> · 📞 <a href="tel:+56949290386">+56 9 4929 0386</a></div>
+    <div>Hecho con ❤️ para el Liceo Bicentenario de Excelencia Polivalente San Nicolás</div>
+    <div>Proyecto Educativo - Realidad Virtual / Realidad Aumentada / vista 3D</div>
+  </div>
+</footer>
+  <script src="assets/js/controls.js"></script>
+  
+  <script src="assets/js/accessibility.js"></script>
+</body></html>
